@@ -6,7 +6,7 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 16:37:21 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/03 16:43:35 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/04 17:21:05 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ int		ft_get_precision( char *num, int i);
 int		ft_get_wdt(char *num, int i);
 int		ft_format_output(t_out *tab, char *arg, size_t i);
 int		ft_printf(char *content, ...);
+int		decimal_to_base(unsigned n, char *base);
 
 #endif

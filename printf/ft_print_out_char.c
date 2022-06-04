@@ -6,9 +6,11 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 15:59:54 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/04 15:59:57 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/04 17:13:57 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
 
 int	ft_print_out_char(t_out *tab)
 {

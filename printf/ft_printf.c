@@ -6,14 +6,11 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 23:48:40 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/04 15:30:28 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/04 17:13:20 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "ft_printf.h"
 
 typedef t_test;
 

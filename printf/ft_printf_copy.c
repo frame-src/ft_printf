@@ -6,7 +6,7 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 23:48:40 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/04 16:13:50 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/04 18:09:31 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int ft_get_wdt(char *num, int i)
 	return (len);
 }
 
-t_out *fotmat_flag( t_out *tab, char* arg)
+t_out *format_flag( t_out *tab, char* arg)
 {
 	int j;
 	int i;
@@ -169,12 +169,12 @@ int main (void)
 	//char *s = "dipolo";
 	ft_printf("\n//STRING ////////////////////\n");
 	ft_printf("\nft_printf: *|%010.-7..5s|","ciaociaociao");
-	printf("\nprintf: *|%010.-7..5s|","ciaociaociao");
+	printf("\nprintf: *|%010.7..5s|","ciaociaociao");
 			fflush(NULL);
-	printf("\nprintf: ****|%010.-7s|","ciaociaociao");
+	printf("\nprintf: ****|%10.7s|","ciaociaociao");
 		fflush(NULL);
-	ft_printf("\nft_printf: *|%0.-7.8.9.2.3.1.s|","ciaociaociao");
-	printf("\nprintf: ****|%0.-7.8.9.2.3.1.s|\n","ciaociaociao");
+	ft_printf("\nft_printf: *|%.7.8.9.2.3.1.s|","ciaociaociao");//'0' results in undefined behavior with 's' conversion specifier
+	printf("\nprintf: ****|%.7.8.9.2.3.1.s|\n","ciaociaociao");//'0' results in undefined behavior with 's' conversion specifier
 			fflush(NULL);
 	// printf("\n   printf:|%010.-7-s|","ciaociaociao");
 	// printf("\ntest%0#-+ 18.15stest", "4294967295");
@@ -201,23 +201,23 @@ int main (void)
 
 	// unsigned
 	ft_printf("\n//UNSIGNED /////////////////\n");
-	ft_printf("\nft_printf : %u", 42949672454545495);
-	printf("\n***printf : %u", 42949672454545495);
+	ft_printf("\nft_printf : %u", 429496724);
+	printf("\n***printf : %u", 429445495);
 			fflush(NULL);
-	ft_printf("\nft_printf : %u", -2554600000);
-	printf("\n***printf : %u", -2554600000);
+	ft_printf("\nft_printf : %u", -255460);
+	printf("\n***printf : %u", -255460);
 			fflush(NULL);
-	ft_printf("\nft_printf : %20u", 4294967295);
-	printf("\n***printf : %20u", 4294967295);
+	ft_printf("\nft_printf : %20u", 42947295);
+	printf("\n***printf : %20u", 42949295);
 			fflush(NULL);
 	ft_printf("\nft_printf : %-20.12u", 42945);
 	printf("\n***printf : %-20.12u", 42945);
 				fflush(NULL);
-	ft_printf("\nft_printf: \t|%+-28.20u|\n", -1202);
-	printf("\n***printf: \t|%-+28.20u|\n", -1202);
+	ft_printf("\nft_printf: \t|%-28.20u|\n", -1202); //flag '+' results in undefined behavior with 'u' conversion specifier
+	printf("\n***printf: \t|%-28.20u|\n", -1202); //flag '+' results in undefined behavior with 'u' conversion specifier
 				fflush(NULL);
-	ft_printf("\nft_printf: \t|%+-%|\n", -1202);
-	printf("\n***printf: \t|%-+%|\n", -1202);
+	ft_printf("\nft_printf: \t|%+-%|\n");
+	printf("\n***printf: \t|%-+%|\n");
 				fflush(NULL);
 	return 0;
 }

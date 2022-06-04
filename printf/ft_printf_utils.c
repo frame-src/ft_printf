@@ -6,9 +6,11 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 15:55:32 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/04 15:57:22 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/04 17:14:27 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
 
 int how_big(size_t n, int i)
 {
@@ -60,7 +62,6 @@ int	ft_isdigit(int c)
 int decimal_to_base(unsigned n, char *base)
 {
 	int i;
-	size_t b;
 
 	i = 0;
 	while(base[i])
