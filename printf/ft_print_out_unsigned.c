@@ -6,7 +6,7 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 16:02:32 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/04 17:36:20 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/05 15:02:43 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,22 @@ int ft_print_out_unsigned(t_out *tab)
 
 	i = 0;
 	z = 0;
-	if(tab->wdt != 0 && tab->wdt - how_big_to(num, 10) > 0 && tab->wdt - (tab->dot - 1) > 0 && tab->dash == 0)
+	if(tab->wdt != 0 && tab->wdt - how_big(num, 10) > 0 && tab->wdt - (tab->dot - 1) > 0 && tab->dash == 0)
 	{
 		// if((tab->sign > 0)) //se c'e' il segno mi serve lo spazio perche' almeno 1 e' preso dal segno di merda
 		// 	i = 1;
-		while(i < tab->wdt - how_big_to(num,10))//- how_big_to( num, 10)? ATTENZIONE
+		while(i < tab->wdt - how_big(num,10))//- how_big( num, 10)? ATTENZIONE
 		{
 			z+= write(1," ", 1);
 			i++;
 		}
 	}
 	i = 0;
-	if(tab->dot > 0 && (tab->dot - 1) - how_big_to( num, 10) > 0 && tab->dash == 0)//  posto x la precisione: se x < L non succede niente. Se x < W
+	if(tab->dot > 0 && (tab->dot - 1) - how_big( num, 10) > 0 && tab->dash == 0)//  posto x la precisione: se x < L non succede niente. Se x < W
 	{
 		// if(num > 0 && (tab->sign > 0)) //se c'e' il segno negativo mi serve lo spazio perche' almeno 1 e' preso dal segno di merda di nuovo
 		// 	i = 1;
-		while(i < (tab->dot - 1) - how_big_to( num, 10))
+		while(i < (tab->dot - 1) - how_big( num, 10))
 		{
 			z+= write(1, "0", 1);
 			i++;
@@ -45,18 +45,18 @@ int ft_print_out_unsigned(t_out *tab)
 	// if((tab->sign > 0))
 	// 	z += write(1, "+", 1);
 	i = 0;
-	if(tab->dot > 0 && (tab->dot - 1) - how_big_to( num, 10) > 0 && tab->dash == 1)
+	if(tab->dot > 0 && (tab->dot - 1) - how_big( num, 10) > 0 && tab->dash == 1)
 	{
-		while(i < (tab->dot -1) - how_big_to( num, 10))
+		while(i < (tab->dot -1) - how_big( num, 10))
 		{
 			z+= write(1, "0", 1);
 			i++;
 		}
 	}
 	decimal_to_base(num, "0123456789");
-	if(tab->wdt != 0 && tab->wdt - how_big_to(num, 10) > 0 && tab->wdt - (tab->dot - 1) > 0 && tab->dash == 1)
+	if(tab->wdt != 0 && tab->wdt - how_big(num, 10) > 0 && tab->wdt - (tab->dot - 1) > 0 && tab->dash == 1)
 	{
-		while(i < tab->wdt - how_big_to( num, 10))
+		while(i < tab->wdt - how_big( num, 10))
 		{
 			z+= write(1, " ", 1);
 			i++;

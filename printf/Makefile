@@ -1,4 +1,4 @@
-NAME = libft.a
+NAME = ft_printf.a
 
 SRCS=	ft_printf_utils.c\
 		ft_print_out_char.c\
@@ -8,7 +8,7 @@ SRCS=	ft_printf_utils.c\
 		ft_print_out_hex.c\
 		ft_print_out_percent.c\
 		ft_print_out_unsigned.c\
-		ft_printf_copy.c\
+		ft_printf.c\
 
 OBJS=$(SRCS:.c=.o)
 
@@ -18,18 +18,20 @@ CFLAG = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME) : $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+	@ar rcs $(NAME) $(OBJS)
 
-bonus : $(OBJS)
-	ar rc $(NAME) $(OBJ)
-	
 %.o : %.c
-	$(CC) $(CFLAG) -c $^ -o $@
+	@$(CC) $(CFLAG) -c $^ -o $@
+
+exe:
+	@make re
+	@cc $(NAME) main.c -o print
+	@./print
 clean:
-	rm -f $(OBJS)
+	@rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 .PHONY: all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 16:37:21 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/04 17:21:05 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/05 15:03:59 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_out
 }t_out;
 
 t_out	*ft_init_tab(t_out *ptr);
-int		how_big_to( size_t n, int i);
+int		how_big( size_t n, int i);
 int		decimal_to_string(size_t n, char *base);
 int		ft_is_in(const char c, char *str);
 int		ft_strlen(char *c);
@@ -49,5 +49,9 @@ int		ft_get_wdt(char *num, int i);
 int		ft_format_output(t_out *tab, char *arg, size_t i);
 int		ft_printf(char *content, ...);
 int		decimal_to_base(unsigned n, char *base);
+int		ft_print_out_unsigned(t_out *tab);
+int		ft_print_out_percent(t_out *tab);
+int		ft_print_out_hex(t_out *tab, char *prefix);
+
 
 #endif
