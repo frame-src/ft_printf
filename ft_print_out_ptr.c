@@ -6,26 +6,60 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 16:00:31 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/04 17:17:10 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/08 23:59:36 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_print_out_ptr(t_out *tab)
+
+
+static int precision_value( int len, int precision)
 {
-	// char *tmp;
-	char	*c;
-	// char *mailbox;
-	// int i;
-	c = va_arg(tab->args, void *);
+	if(precision - len > 0)
+		return (precision);
+	else
+		return(len);
+}
+static int manage_wdt( int precision, int len, int wdt)
+{
+	int prc;
+	int z;
+
+	z = 0;
+	prc = precision_value( len, precision); 
+	while(z < wdt - prc)
+		z+= write( 1, " ", 1);
+	return (z);
+}
+static int manage_prc( int precision, int len)
+{
+	int z;
+	z = 0;
 	
-	// mailbox = &c;
-	// while(mailbox[i])
-	// {
-	// 	printf("mailbox:\t %x  %d\n", mailbox[i], i);
-	// 	i++;
-	//}//write(1, &mailbox, sizeof(mailbox));
+	while(z < precision - len)
+		z+= write( 1, "0", 1);
+	return (z);
+}
+
+int	ft_print_out_ptr(t_out *tab, char *base, char * prefix)
+{
 	
-	return 0;
+	int z;
+	unsigned long num;
+	num = va_arg(tab->args, unsigned long); 
+	z = 0;
+	if(tab->wdt != 0 && tab->dash == 0)
+		z += manage_wdt(tab->dot - 1, how_big(num, 10), tab->wdt);
+	if(tab->dot > 0 && tab->dash == 0)
+		z += manage_prc( tab->dot - 1, how_big( num, 10));
+	if(tab->dot > 0 && tab->dash == 1)
+		z += manage_prc( tab->dot - 1, how_big( num, 10));
+	z += write(1, prefix, ft_strlen(prefix));
+	if(num == 0)
+		z+= write( 1, "0", 1);
+	z += decimal_to_base(num, base);
+	if(tab->wdt != 0 && tab->dash == 1)
+		z += manage_wdt(tab->dot - 1, how_big(num, 10), tab->wdt);
+	return (z);
 }

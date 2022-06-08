@@ -6,7 +6,7 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 15:59:03 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/06 10:37:30 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/08 20:37:13 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int set_precision_len(int len_str, int precision_value)
 		return (len_str);
 	else
 		return (precision_value);
-
 }
 
 int print_out_wdt(int precision_len, int wdt, int zero)
@@ -51,7 +50,7 @@ int	ft_print_out_str(t_out *tab)
 	int		precision_len;
 	
 	w = 0;
-	c = va_arg(tab->args, char *);
+	c = (char *)va_arg(tab->args, void *);
 	if( c == NULL)
 		c = "(null)";
 	precision_len = set_precision_len(ft_strlen(c), tab->dot -1);

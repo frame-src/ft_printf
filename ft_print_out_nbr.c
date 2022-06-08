@@ -6,12 +6,13 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 16:01:18 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/07 15:58:31 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/08 15:38:04 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-int ft_precision_value( int precision, int len)
+                     
+static int ft_precision_value( int precision, int len)
 {
 	if (precision > len)
 		return(precision);
@@ -63,7 +64,6 @@ int print_out_sign( int sign, int plus_flag, int space)
 int	ft_print_out_nbr( t_out *tab)
 {
 	long long int num;
-	long long int b;
 	int sign;
 	int i;
 	size_t z;
@@ -72,11 +72,10 @@ int	ft_print_out_nbr( t_out *tab)
 	z = 0;
 	
 	num = va_arg(tab->args, int);
-	b = num;
 	sign = 1;
 	if( num < 0)
 		{
-			num = -1 * num;
+			num = - 1 * num;
 			sign = -1;
 		}
 	i = 0;

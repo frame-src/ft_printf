@@ -17,7 +17,7 @@ CFLAG = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-bonus:all
+bonus: re
 
 $(NAME) : $(OBJS)
 	@ar rcs $(NAME) $(OBJS)
@@ -27,7 +27,7 @@ $(NAME) : $(OBJS)
 
 exe:
 	@make re
-	@cc $(NAME) main.c -o print
+	@cc $(NAME) main.c -g -o print 
 	@./print
 clean:
 	@rm -f $(OBJS)

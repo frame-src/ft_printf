@@ -6,7 +6,7 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 23:48:40 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/07 11:36:37 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/08 22:59:14 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_out *ft_init_tab(t_out *ptr)
 {
 	ptr->wdt = 0;
-	ptr->prc = 0;
+	ptr->prf = 0;
 	ptr->zero = 0;
 	ptr->dot = 0;
 	ptr->dash = 0;
@@ -23,7 +23,6 @@ t_out *ft_init_tab(t_out *ptr)
 	ptr->is_zero = 0;
 	ptr->percent = 0;
 	ptr->space = 0;
-//	ptr->tl = 0;
 	return (ptr);
 }
 
@@ -37,7 +36,6 @@ int	ft_get_precision( char *num, int i) //arg[i] = '.'
 		len = (len * 10) + ((num[i]) - '0');
 		i++;
 	}
-		fflush(NULL);
 	return (len + 1);//(sign*(len + 1));
 }
 
@@ -71,6 +69,8 @@ t_out *format_flag( t_out *tab, char* arg,size_t i)
 			tab->percent = 1;
 		else if(ft_isdigit(arg[i]) && (tab->dot == 0) && tab->wdt == 0) //%7.434d
 			tab->wdt = ft_get_wdt(arg,i);
+		else if (arg[i] == '#')
+			tab->prf += 1;
 		i++;
 	}
 	return(tab);
@@ -88,17 +88,17 @@ int	ft_format_output	(t_out *tab, char *arg, size_t i) //%jhfjkwhhfkjweh
 		else if (arg[i] == 's')
 			tab->tl += ft_print_out_str(tab);
 		else if (arg[i] == 'p')
-			tab->tl += ft_print_out_ptr(tab);
+			tab->tl += ft_print_out_ptr(tab, "0123456789abcdef", "0x");
 		else if (arg[i] == 'd' || arg[i] == 'i')
 			tab->tl += ft_print_out_nbr(tab);
 		else if (arg[i] == 'u')
 			tab->tl += ft_print_out_unsigned(tab);
 		else if (arg[i] == 'x')
-			tab->tl += ft_print_out_hex(tab, "0123456789abcdef");
+			tab->tl += ft_print_out_hex(tab, "0123456789abcdef", "0x");
 		else if (arg[i] == 'X')
-			tab->tl += ft_print_out_hex(tab, "0123456789ABCDEF");
+			tab->tl += ft_print_out_hex(tab, "0123456789ABCDEF", "0X");
 		else if (arg[i] == '%')
-			tab->tl += ft_print_out_percent(tab);
+			tab->tl += ft_print_out_percent();
 	}
 	ft_init_tab(tab); //after i do the stuff initialize the tab again or get fucked because after the % u can get another % and you are not calling again printf but arte simply keeping reading
 	return (i); 

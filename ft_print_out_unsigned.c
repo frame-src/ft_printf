@@ -6,13 +6,13 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 16:02:32 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/07 17:43:50 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/08 13:06:53 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_precision_value( int precision, int len)
+static int ft_precision_value( int precision, int len)
 {
 	if (precision > len)
 		return(precision);

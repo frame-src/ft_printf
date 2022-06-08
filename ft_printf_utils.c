@@ -6,16 +6,17 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 15:55:32 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/05 15:02:12 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/09 00:00:35 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int how_big(size_t n, int i)
+int how_big(unsigned long n, int i)
 {
 	int len;
 	
+	//printf("%lu", n);
 	len = 0;
 	while(n > 0)
 	{	
@@ -25,7 +26,7 @@ int how_big(size_t n, int i)
 	return (len);
 }
 
-int ft_is_in(const char c, char *str)
+int ft_is_in(char c, char *str)
 {
 	int i;
 
@@ -39,13 +40,19 @@ int ft_is_in(const char c, char *str)
 	return (-1);
 }
 
-int	ft_strlen(char *c)
+size_t	ft_strlen(char *s)
 {
-	int i = 0;
-	while(c[i]!= '\0')
+	size_t	i;
+
+	if (!s)
+		return (0);
+	i = 0;
+	while (s[i])
 		i++;
-	return i;
+		
+	return (i);
 }
+
 
 int	ft_isdigit(int c)
 {
@@ -59,17 +66,22 @@ int	ft_isdigit(int c)
 	}
 }
 
-int decimal_to_base(unsigned n, char *base)
+int decimal_to_base (unsigned long long  n, char *base) //012456789ABCDEF
 {
 	int i;
+	int z;
 
-	i = 0;
-	while(base[i])
-		i++;
-	if (n>0)
+	z = 0;
+	i = ft_strlen (base);
+	
+	if (n > 0)
 	{
 		decimal_to_base(n/i, base);
 		write(1, &base[n%i], 1);
 	}
-	return (how_big(n, i));
-}
+	
+	z += how_big(n, i);
+	
+	return (z);
+	
+} //"10" char base [2] = "0123456789ABCDEF";

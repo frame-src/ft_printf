@@ -6,7 +6,7 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 17:29:21 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/07 14:53:30 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/08 23:07:16 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int decimal_to_string(unsigned long n, char *base)
 		decimal_to_string(n/i, base);
 		write(1, &base[n%i], 1);
 	}
+		if (n == 0)
+			write(1, "0", fd);
 	return (1);
 }
 // int main (void)
@@ -100,11 +102,11 @@ int decimal_to_string(unsigned long n, char *base)
 // 	return reversed(converted_bin);
 // }
 
-// int main ()
-// {
-// 	char *s;
-// 	s = decimal_to_string(10);
-// 	printf("\ns:%s",s);
-	
-// 	return 0;
-// }
+int main ()
+{
+	char *s;
+	s = "achile";
+		decimal_to_string(105565656526262, "0123456789ABCDEF");
+		printf("\n%p\n", s);
+	return 0;
+}
