@@ -6,7 +6,7 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 16:02:32 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/08 13:06:53 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/09 20:54:14 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ int ft_print_out_unsigned(t_out *tab)
 {
 	int i;
 	int z;
-	unsigned long int num;
+	unsigned int num;
 	int precision_value;
-	num = va_arg(tab->args, unsigned long int);
+	num = va_arg(tab->args, unsigned int);
 
 	i = 0;
 	z = 0;
-	precision_value  = ft_precision_value( tab->dot, how_big(num, 10));
+	precision_value = ft_precision_value( tab->dot, how_big(num, 10));
 	if(tab->wdt != 0 && tab->wdt - precision_value && tab->dash == 0)
 	{
 		while(i < tab->wdt - how_big(num,10))
@@ -84,7 +84,10 @@ int ft_print_out_unsigned(t_out *tab)
 			i++;
 		}
 	}
-	decimal_to_base(num, "0123456789");
+	if(num == 0)
+		z+= write( 1, "0", 1);
+	else
+		z += decimal_to_base(num, "0123456789");
 	if(tab->wdt != 0 && tab->wdt - how_big(num, 10) > 0 && tab->wdt - (tab->dot - 1) > 0 && tab->dash == 1)
 	{
 		while(i < tab->wdt - how_big( num, 10))
@@ -93,5 +96,5 @@ int ft_print_out_unsigned(t_out *tab)
 			i++;
 		}
 	}
-	return (1);
+	return (z);
 }

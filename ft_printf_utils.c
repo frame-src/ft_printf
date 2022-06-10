@@ -6,7 +6,7 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 15:55:32 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/09 00:00:35 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/09 21:14:32 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ int how_big(unsigned long n, int i)
 	int len;
 	
 	//printf("%lu", n);
+	// len = 1;
+	// while(n > (unsigned long)(i - 1))
+	if( n == 0)
+		return (1);
 	len = 0;
 	while(n > 0)
 	{	
@@ -84,4 +88,4 @@ int decimal_to_base (unsigned long long  n, char *base) //012456789ABCDEF
 	
 	return (z);
 	
-} //"10" char base [2] = "0123456789ABCDEF";
+}
