@@ -6,7 +6,7 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 16:01:18 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/09 21:53:36 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/11 00:06:28 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,8 @@ int	ft_print_out_nbr( t_out *tab)
 	int i;
 	size_t z;
 	int p;
-	printf("\nLONG MIN: %d", how_big(LONG_MIN, 10));
-	fflush(NULL);
-	z = 0;
 	
+	z = 0;
 	num = va_arg(tab->args, int);
 	sign = 1;
 	if( num < 0)
@@ -83,25 +81,32 @@ int	ft_print_out_nbr( t_out *tab)
 	i = 0;
 	if(tab->sign > 0 || sign == -1)
 		i = 1;
-	p = ft_precision_value(tab->dot -1, how_big( num, 10)); 
+	p = ft_precision_value(tab->dot -1, how_big( num, 10));
+	if(tab->zero > 0 && tab->dot == 0)
+		z += print_out_sign(sign, tab->sign, tab->space); 
 	if(tab->wdt != 0 && tab->wdt - p > 0 && tab->dash == 0)
 		z += print_nbr_wdt(tab->zero, tab->dot, tab->wdt, p, i);
-	z += print_out_sign(sign, tab->sign, tab->space);
+	if(tab->zero == 0 || (tab->zero > 0 && tab->dot > 0))
+		z += print_out_sign(sign, tab->sign, tab->space); 
+	i = 0;
 	while(i < (tab->dot - 1) - how_big( num, 10))
 	{
 		z+= write(1, "0", 1);
 		i++;
 	}
-	if(tab->dot == 0 && num == 0)
-	{
-		z += write(1, "0", 1);
-		i = 1;
-	}
+	if(num == 0)
+		{
+			if(tab->dot -1 == 0)
+				z += write( 1, " ", 1);
+			else
+				z += write( 1, "0", 1);
+		}
 	else
 		z += decimal_to_base(num, "0123456789");
-	if(tab->wdt != 0 && tab->wdt - how_big(num, 10) > 0 && tab->wdt - (tab->dot - 1) > 0 && tab->dash == 1)
+	if(tab->wdt != 0 && tab->wdt - p > 0 && tab->dash > 0)
 	{
-		if(tab->sign > 0 || sign == -1)
+		i = 0;
+		if(sign == -1)
 			i = 1;
 		z += print_nbr_wdt(tab->zero, tab->dot, tab->wdt, p, i);
 	}

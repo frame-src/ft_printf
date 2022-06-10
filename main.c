@@ -33,7 +33,7 @@ int main (void)
 	//ft_printf("%d\n", 466487);
 
 
-	ft_printf("\n//CHAR /////////////////\n");
+	// ft_printf("\n//CHAR /////////////////\n");
 	// printf("%d",ft_printf("\nft_printf: \t|%-2c|",'D'));
 	// printf("%d",printf("\n***printf: \t|%-2c|", 'D'));
 	// 		fflush(NULL);
@@ -46,11 +46,14 @@ int main (void)
 	// printf("%d",printf("\n***printf: \t|%028c|", 'D'));
 	// // 		fflush(NULL);
 	ft_printf("\n//INTEGER /////////////////\n");
-	//printf("%d",ft_printf("\nft_printf: \t|% d|", 0));
-	printf("%d", ft_printf("\n %-9d %-10d |%-11d ||%-12d| %-13d %-14d %-15d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42));
+	printf("%d",ft_printf("\n|%-15.5i|", -5000));
 	fflush(NULL);
-	printf("%d", printf("\n %-9d %-10d |%-11d ||%-12d| %-13d %-14d %-15d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42));
+	printf("%d",printf("\n|%-15.5i|", -5000));
+	//printf("%d", printf("\n %-9d %-10d |%-11d ||%-12d| %-13d %-14d %-15d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42));
 	fflush(NULL);
+	// printf("ft_ printf LONG_MIN: %d\n", ft_printf("ftP: |%-12d| ", LONG_MIN));
+	// printf("printf LONG_MIN: %d\n", printf("**P: |%-12d| ", LONG_MIN));//, INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42));
+	// fflush(NULL);
 	// printf("%d",printf("\n***printf: \t|% d|", 0));
 	// fflush(NULL);
 	// printf("%d",ft_printf("\nft_printf: \t|%-1d|", 1));
@@ -63,9 +66,11 @@ int main (void)
 	// 		fflush(NULL);
 
 
-	ft_printf("\n//UNSIGNED /////////////////\n");
-	// ft_printf("\nft_printf : %u", 429496724);
-	// printf("\n***printf : %u", 429445495);
+	// ft_printf("\n//UNSIGNED /////////////////\n");
+	// printf("%d",ft_printf("\nft_printf : |%0.1u|", 0));
+	// printf("%d",printf("\n***printf : |%0.1u|", 0));
+	// fflush(NULL);
+
 	// 		fflush(NULL);
 	// ft_printf("\nft_printf : %u", -255460);
 	// printf("\n***printf : %u", -255460);
@@ -80,13 +85,13 @@ int main (void)
 	// printf("\n***printf: \t|%-28.20u|\n", -1202); //flag '+' results in undefined behavior with 'u' conversion specifier
 	// 			fflush(NULL);
 	
-	ft_printf("\n// PERCENT/////////////////\n");
-	// // ft_printf("\nft_printf: \t|%+-%|\n");
-	// printf("\n***printf: \t|%-+%|\n");
-	// 			fflush(NULL);
-	// return (0);
+	// ft_printf("\n// PERCENT/////////////////\n");
+	// // // ft_printf("\nft_printf: \t|%+-%|\n");
+	// // printf("\n***printf: \t|%-+%|\n");
+	// // 			fflush(NULL);
+	// // return (0);
 
-	ft_printf("\n// POINTER/////////////////\n");
+	// ft_printf("\n// POINTER/////////////////\n");
 
 	// printf("\nftp: %d\n", ft_printf("|%-2p|",1));
 	// 	fflush(NULL);
@@ -132,7 +137,7 @@ int main (void)
 	// fflush(NULL);
 
 	//ft_printf("%x   %d    %%        %x %d",15, 12,"s");
-//ft_printf("%s","42");//printf("ciao %s\n",42);
+	//ft_printf("%s","42");//printf("ciao %s\n",42);
 
 }
 // ft_printf:      |000000000000000001202|$
