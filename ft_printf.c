@@ -6,13 +6,13 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 23:48:40 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/11 17:09:00 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/11 23:48:58 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_out *ft_init_tab(t_out *ptr)
+t_out	*ft_init_tab(t_out *ptr)
 {
 	ptr->wdt = 0;
 	ptr->prf = 0;
@@ -26,20 +26,20 @@ t_out *ft_init_tab(t_out *ptr)
 	return (ptr);
 }
 
-int	ft_get_precision( char *num, int i) //arg[i] = '.'
+int	ft_get_precision( char *num, int i)
 {
 	int	len;
 
 	len = 0;
-	while(ft_isdigit((int)num[i]) != 0)
+	while (ft_isdigit((int)num[i]) != 0)
 	{
 		len = (len * 10) + ((num[i]) - '0');
 		i++;
 	}
-	return (len + 1);//(sign*(len + 1));
+	return (len + 1);
 }
 
-int ft_get_wdt(char *num, int i)
+int	ft_get_wdt(char *num, int i)
 {
 	int len;
 	len = 0;
@@ -51,7 +51,7 @@ int ft_get_wdt(char *num, int i)
 	return (len);
 }
 
-t_out *format_flag( t_out *tab, char* arg,size_t i)
+t_out *format_flag( t_out *tab, char* arg, size_t i)
 {
 	while (ft_is_in(arg[i], "cspdiuxX%") == -1 )
 	{
