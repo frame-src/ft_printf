@@ -46,11 +46,11 @@ int main (void)
 	// printf("%d",printf("\n***printf: \t|%028c|", 'D'));
 	// // 		fflush(NULL);
 	ft_printf("\n//INTEGER /////////////////\n");
-	printf("%d",ft_printf("\n|%-15.5i|", -5000));
-	fflush(NULL);
-	printf("%d",printf("\n|%-15.5i|", -5000));
+	// printf("%d",ft_printf("\n|%-15.5i|", -5000));
+	// fflush(NULL);
+	// printf("%d",printf("\n|%-15.5i|", -5000));
 	//printf("%d", printf("\n %-9d %-10d |%-11d ||%-12d| %-13d %-14d %-15d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42));
-	fflush(NULL);
+	// fflush(NULL);
 	// printf("ft_ printf LONG_MIN: %d\n", ft_printf("ftP: |%-12d| ", LONG_MIN));
 	// printf("printf LONG_MIN: %d\n", printf("**P: |%-12d| ", LONG_MIN));//, INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42));
 	// fflush(NULL);
@@ -108,8 +108,10 @@ int main (void)
 	// printf("%d",printf("\n***printf: \t|%p|\n",16));
 
 	// ft_printf("\n // UNSIGNED\n");
-	// printf("ft_printf: %d", ft_printf("\n %u \n", 0));
-	// printf("printf: %d", printf("\n %u \n", 0));
+	printf("ft_printf: %d", ft_printf("\nP %-15.0x \n", 0));
+		fflush(NULL);
+	printf("printf: %d", printf("\nR %-15.0x \n", 0));
+		fflush(NULL);
 	// fflush(NULL);
 	// printf("%d", ft_printf("\n %u ", -1));
 	// printf("%d", printf("\n %u ", -1));

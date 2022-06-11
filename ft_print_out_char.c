@@ -6,7 +6,7 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 15:59:54 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/10 22:22:17 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/11 15:25:36 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,16 @@ int	ft_print_out_char(t_out *tab)
 		}
 		else
 		{
-			while(w < (tab->wdt))
+			while(w < (tab->wdt) -1)
 				w += write(1, " ", 1);
 		}
 	}
+	
 	w += write(1,&c,1);
+	
 	if(tab->wdt > 0 && tab->dash > 0)
 	{
-		while(w < (tab->wdt - 1))
+		while(w - 1 < (tab->wdt - 1))
 		w += write(1, " ", 1);
 	}
 	return w;

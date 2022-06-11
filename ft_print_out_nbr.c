@@ -6,19 +6,21 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 16:01:18 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/11 00:06:28 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/11 17:20:06 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <limits.h>
 
-static int ft_precision_value( int precision, int len)
+static int ft_precision_value( int precision, int len, int num)
 {
 	if (precision > len)
-		return(precision);
+		return (precision);
+	if (precision == 0 && num == 0)
+		return (0);
 	else
-		return(len);
+		return (len);
 }
 
 int print_nbr_wdt( int zero, int precision, int width, int len, int i)
@@ -30,7 +32,7 @@ int print_nbr_wdt( int zero, int precision, int width, int len, int i)
 	{
 		while(i < width - len)
 		{
-			z+= write(1,"0", 1);
+			z+= write( 1, "0", 1);
 			i++;
 		}
 	}
@@ -38,7 +40,7 @@ int print_nbr_wdt( int zero, int precision, int width, int len, int i)
 	{
 		while(i < width - len)
 		{
-			z+= write(1," ", 1);
+			z+= write( 1, " ", 1);
 			i++;
 		}
 	}
@@ -81,7 +83,7 @@ int	ft_print_out_nbr( t_out *tab)
 	i = 0;
 	if(tab->sign > 0 || sign == -1)
 		i = 1;
-	p = ft_precision_value(tab->dot -1, how_big( num, 10));
+	p = ft_precision_value(tab->dot -1, how_big( num, 10), num);
 	if(tab->zero > 0 && tab->dot == 0)
 		z += print_out_sign(sign, tab->sign, tab->space); 
 	if(tab->wdt != 0 && tab->wdt - p > 0 && tab->dash == 0)
@@ -94,14 +96,11 @@ int	ft_print_out_nbr( t_out *tab)
 		z+= write(1, "0", 1);
 		i++;
 	}
-	if(num == 0)
+	if(num == 0 && tab->dot -1 != 0)
 		{
-			if(tab->dot -1 == 0)
-				z += write( 1, " ", 1);
-			else
 				z += write( 1, "0", 1);
 		}
-	else
+	if(num != 0)
 		z += decimal_to_base(num, "0123456789");
 	if(tab->wdt != 0 && tab->wdt - p > 0 && tab->dash > 0)
 	{
