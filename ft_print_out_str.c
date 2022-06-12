@@ -6,13 +6,13 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 15:59:03 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/12 01:13:32 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/12 22:39:13 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	set_precision_len(int len_str, int precision_value)
+static int	set_precision_len(int len_str, int precision_value)
 {
 	if (precision_value >= len_str || precision_value < 0)
 		return (len_str);
@@ -20,7 +20,7 @@ int	set_precision_len(int len_str, int precision_value)
 		return (precision_value);
 }
 
-int	print_out_wdt(int precision_len, int wdt, int zero)
+static int	print_out_wdt(int precision_len, int wdt, int zero)
 {
 	int		k;
 

@@ -6,13 +6,13 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 23:48:40 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/12 00:57:01 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/13 00:55:59 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_out	*ft_init_tab(t_out *ptr)
+void	ft_init_tab(t_out *ptr)
 {
 	ptr->wdt = 0;
 	ptr->prf = 0;
@@ -23,33 +23,6 @@ t_out	*ft_init_tab(t_out *ptr)
 	ptr->is_zero = 0;
 	ptr->percent = 0;
 	ptr->space = 0;
-	return (ptr);
-}
-
-int	ft_get_precision( char *num, int i)
-{
-	int	len;
-
-	len = 0;
-	while (ft_isdigit((int)num[i]) != 0)
-	{
-		len = (len * 10) + ((num[i]) - '0');
-		i++;
-	}
-	return (len + 1);
-}
-
-int	ft_get_wdt(char *num, int i)
-{
-	int		len;
-
-	len = 0;
-	while (ft_isdigit((int)num[i]) != 0)
-	{
-		len = (len * 10) + ((num[i]) - '0');
-		i++;
-	}
-	return (len);
 }
 
 t_out	*format_flag( t_out *tab, char *arg, size_t i)
@@ -105,32 +78,30 @@ int	ft_format_output(t_out *tab, char *arg, size_t i)
 	return (i);
 }
 
+int check_unvalid_arg()
+
 int	ft_printf(const char *content, ...)
 {
 	size_t	i;
 	int		ret;
-	t_out	*tab;
+	t_out	tab;
 	char	*content1;
 
 	content1 = (char *)(content);
-	tab = (t_out *)malloc(sizeof(t_out));
-	if (!tab)
-		return (-1);
-	tab = ft_init_tab(tab);
-	tab->tl = 0;
-	va_start(tab->args, content);
+	ft_init_tab(&tab);
+	tab.tl = 0;
+	va_start(tab.args, content);
 	i = 0;
 	ret = 0;
 	while (content1[i] != '\0')
 	{
-		if (content1[i] == '%')
-			i = ft_format_output(tab, content1, i + 1);
+		if (content1[i] == '%' && check_unvalid_arg("cspdiuxX%",) == 1)
+			i = ft_format_output(&tab, content1, i + 1);
 		else
 			ret += write(1, &content1[i], 1);
 		i++;
 	}
-	va_end (tab->args);
-	ret += tab->tl;
-	free (tab);
+	va_end (tab.args);
+	ret += tab.tl;
 	return (ret);
 }

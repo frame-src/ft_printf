@@ -9,6 +9,7 @@ SRCS=	ft_printf_utils.c\
 		ft_print_out_percent.c\
 		ft_print_out_unsigned.c\
 		ft_printf.c\
+		ft_printf_calc.c\
 
 OBJS=$(SRCS:.c=.o)
 
