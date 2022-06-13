@@ -6,7 +6,7 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 23:48:40 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/13 00:55:59 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/13 02:08:45 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,20 @@ int	ft_format_output(t_out *tab, char *arg, size_t i)
 	return (i);
 }
 
-int check_unvalid_arg()
+int check_unvalid_arg(char *string, int i)
+{
+	if (string[i] == '%')
+		return 1;
+	while(string[i])
+	{
+		if (ft_is_in(string[i], "-0 .#+") != -1)
+			i++;
+		if (ft_is_in(string[i], "cspdiuxX%" != -1))
+			return 1;
+		if (ft_is_in(string[i], "-0 .#+") == -1)
+			return 0;
+	}
+}
 
 int	ft_printf(const char *content, ...)
 {
@@ -95,7 +108,7 @@ int	ft_printf(const char *content, ...)
 	ret = 0;
 	while (content1[i] != '\0')
 	{
-		if (content1[i] == '%' && check_unvalid_arg("cspdiuxX%",) == 1)
+		if (content1[i] == '%' && check_unvalid_arg(&content[i + 1]) == 1)
 			i = ft_format_output(&tab, content1, i + 1);
 		else
 			ret += write(1, &content1[i], 1);
