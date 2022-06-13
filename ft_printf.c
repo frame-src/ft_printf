@@ -6,11 +6,12 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 23:48:40 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/13 02:08:45 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/13 21:10:04 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 void	ft_init_tab(t_out *ptr)
 {
@@ -78,19 +79,14 @@ int	ft_format_output(t_out *tab, char *arg, size_t i)
 	return (i);
 }
 
-int check_unvalid_arg(char *string, int i)
+static int	jump_flag_if_garbage(char *content, int i)
 {
-	if (string[i] == '%')
-		return 1;
-	while(string[i])
-	{
-		if (ft_is_in(string[i], "-0 .#+") != -1)
-			i++;
-		if (ft_is_in(string[i], "cspdiuxX%" != -1))
-			return 1;
-		if (ft_is_in(string[i], "-0 .#+") == -1)
-			return 0;
-	}
+	i++;
+	while (content[i] != '\0' && (ft_is_in(content[i], "-0 .#+") != -1
+			|| (ft_isdigit(content[i]) == 1)))
+		i++;
+	i++;
+	return (i);
 }
 
 int	ft_printf(const char *content, ...)
@@ -108,9 +104,11 @@ int	ft_printf(const char *content, ...)
 	ret = 0;
 	while (content1[i] != '\0')
 	{
-		if (content1[i] == '%' && check_unvalid_arg(&content[i + 1]) == 1)
+		if (content1[i] == '%' && check_valid_arg(&content1[i + 1]) == 0)
+			i = jump_flag_if_garbage(&content1[i], i);
+		if (content1[i] == '%' && check_valid_arg(&content1[i + 1]) == 1)
 			i = ft_format_output(&tab, content1, i + 1);
-		else
+		else if (content1[i] != '\0')
 			ret += write(1, &content1[i], 1);
 		i++;
 	}

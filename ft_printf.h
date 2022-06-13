@@ -6,7 +6,7 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 16:37:21 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/12 22:21:11 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/13 20:34:35 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ int		ft_print_out_unsigned(t_out *tab);
 int		ft_print_out_percent(void);
 int		ft_print_out_hex(t_out *tab, char *base, char *prefix);
 int		ft_modulo(long int num);
+int		check_valid_arg(char *string);
 
 #endif

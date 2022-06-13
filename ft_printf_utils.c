@@ -6,7 +6,7 @@
 /*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 15:55:32 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/12 20:31:18 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/06/13 20:56:18 by frmessin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,28 +50,22 @@ int	ft_isdigit(int c)
 	}
 }
 
-int	ft_get_wdt(char *num, int i)
+int	check_valid_arg(char *string)
 {
-	int		len;
+	int	i;
 
-	len = 0;
-	while (ft_isdigit((int)num[i]) != 0)
+	i = 0;
+	if (string[i] == '%')
+		return (1);
+	while (string[i])
 	{
-		len = (len * 10) + ((num[i]) - '0');
-		i++;
+		while (ft_is_in(string[i], "-0 .#+") != -1
+			|| (ft_isdigit(string[i]) == 1))
+			i++;
+		if (ft_is_in(string[i], "cspdiuxX%") != -1)
+			return (1);
+		else
+			return (0);
 	}
-	return (len);
-}
-
-int	ft_get_precision( char *num, int i)
-{
-	int	len;
-
-	len = 0;
-	while (ft_isdigit((int)num[i]) != 0)
-	{
-		len = (len * 10) + ((num[i]) - '0');
-		i++;
-	}
-	return (len + 1);
+	return (0);
 }
