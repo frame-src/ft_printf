@@ -1,5 +1,14 @@
-MAKEFLAGS += --no-builtin-rules
-MAKEFLAGS += --no-builtin-variables
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/06/14 19:11:52 by frmessin          #+#    #+#              #
+#    Updated: 2022/06/14 19:11:53 by frmessin         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 NAME = libftprintf.a
 
@@ -14,7 +23,8 @@ SRCS=	ft_printf_utils.c\
 		ft_printf.c\
 		ft_printf_calc.c\
 
-BSRCS=	ft_printf_utils_bonus.c\
+
+BSRCS = ft_printf_utils_bonus.c\
 		ft_print_out_char_bonus.c\
 		ft_print_out_str_bonus.c\
 		ft_print_out_ptr_bonus.c\
@@ -28,30 +38,24 @@ BSRCS=	ft_printf_utils_bonus.c\
 OBJS=$(SRCS:.c=.o)
 BOBJS=$(BSRCS:.c=.o)
 
-
 CC = cc
 CFLAG = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-${BOBJS}: ${BSRCS}
-	@$(CC) $(CFLAG) -c -o
-
-bonus:	${NAME}
-	@ar rcs $(NAME) $(BOBJS)
-	
+bonus: fclean $(BOBJS)
+	ar rcs $(NAME) $(BOBJS)
 
 $(NAME) : $(OBJS)
-	@ar rcs $(NAME) $(OBJS)
+	ar rcs $(NAME) $(OBJS)
 
 %.o : %.c
-	@$(CC) $(CFLAG) -c $^ -o $@
+	$(CC) $(CFLAG) -c $^ -o $@
 
 exe:
-	@make re
+	@make bonus
 	@cc $(NAME) main.c -g -o print 
 	@./print
-
 clean:
 	@rm -f $(OBJS)
 	@rm -f $(BOBJS)
