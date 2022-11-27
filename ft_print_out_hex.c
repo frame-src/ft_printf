@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_out_hex.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frmessin <frmessin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frame <frame@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 16:03:29 by frmessin          #+#    #+#             */
-/*   Updated: 2022/06/12 17:59:58 by frmessin         ###   ########.fr       */
+/*   Updated: 2022/11/27 20:13:12 by frame            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,10 @@ static int	manage_prc(int precision, int len)
 
 int	ft_print_out_hex(t_out *tab, char *base, char *prefix)
 {
-	int				i;
 	int				z;
 	unsigned int	num;
 
 	num = va_arg(tab->args, unsigned int);
-	i = 0;
 	z = 0;
 	if (tab->wdt != 0 && tab->dash == 0)
 		z += manage_wdt(tab, how_big(num, 16), num);
